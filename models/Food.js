@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ArticleSchema = {
+var FoodSchema = {
 
   name: {
     type: String,
@@ -29,7 +29,7 @@ var ArticleSchema = {
     trim: true,
     required: 'ratings required'
   },
-  places:[],
+  places:[String],
 
   user: {
     type: Schema.ObjectId,
@@ -42,5 +42,5 @@ var ArticleSchema = {
   }
 }
 
-var Article = mongoose.model('Article', ArticleSchema, 'articles');
-module.exports = Article;
+var Food = mongoose.model('Food', FoodSchema, 'foods');
+module.exports = Food;

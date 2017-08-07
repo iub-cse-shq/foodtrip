@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Place = require('./../models/Place.js');
+var Food = require('./../models/Food.js');
 var errorHandler = require('./errors.server.controller');
 var _ = require('lodash');
 
@@ -62,6 +63,59 @@ module.exports.update = function(req, res) {
   			res.json(place);
   		}
   	});
+};
+
+exports.new = function(req, res) {
+	res.render('./../public/views/place/create.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
+exports.edit = function(req, res) {
+	res.render('./../public/views/place/edit.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
+exports.view = function(req, res) {
+    Food.find({places: req.place.district}, function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+  				message: errorHandler.getErrorMessage(err)
+  			});
+    } else {
+      res.render('./../public/views/place/view.ejs', {
+    		user: req.user || null,
+    		request: req,
+    		food: data
+    	});
+    }
+  });
+  
+};
+
+exports.all = function(req, res) {
+  Place.find(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+          message: errorHandler.getErrorMessage(err)
+        });
+    } else {
+      console.log("api called");
+      console.log(data);
+
+      res.render('./../public/views/place/list.ejs', {
+    		user: req.user || null,
+    		request: req,
+        places: data
+    	});
+    }
+  });
+
 };
 
 exports.placeByID = function(req, res, next, id) {

@@ -1,13 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ArticleSchema = {
-
-  name: {
-    type: String,
-    default: '',
-    trim: true,
-    required: 'Name required'
-  },
+var PlaceSchema = {
 
   image: {
     type: String,
@@ -46,5 +39,5 @@ var ArticleSchema = {
   }
 }
 
-var Article = mongoose.model('Article', ArticleSchema, 'articles');
-module.exports = Article;
+var Place = mongoose.model('Place', PlaceSchema, 'places');
+module.exports = Place;

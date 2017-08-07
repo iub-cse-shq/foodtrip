@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ArticleSchema = {
+var ReviewSchema = {
 
   username: {
     type: String,
@@ -28,5 +28,5 @@ var ArticleSchema = {
   }
 }
 
-var Article = mongoose.model('Article', ArticleSchema, 'articles');
-module.exports = Article;
+var Review = mongoose.model('Review', ReviewSchema, 'reviews');
+module.exports = Review;

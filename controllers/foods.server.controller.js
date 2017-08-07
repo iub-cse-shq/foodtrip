@@ -64,6 +64,48 @@ module.exports.update = function(req, res) {
   	});
 };
 
+exports.new = function(req, res) {
+	res.render('./../public/views/food/create.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
+exports.edit = function(req, res) {
+	res.render('./../public/views/food/edit.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
+exports.view = function(req, res) {
+	res.render('./../public/views/food/view.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
+exports.all = function(req, res) {
+  Food.find(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+          message: errorHandler.getErrorMessage(err)
+        });
+    } else {
+      console.log("api called");
+      console.log(data);
+
+      res.render('./../public/views/food/list.ejs', {
+    		user: req.user || null,
+    		request: req,
+        foods: data
+    	});
+    }
+  });
+
+};
+
 exports.foodByID = function(req, res, next, id) {
 	Food.findById(id).populate('user', 'email').exec(function(err, food) {
 		if (err) return next(err);

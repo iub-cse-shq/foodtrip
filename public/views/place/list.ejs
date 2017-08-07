@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="/css/place.css">
+<head>
+</head>
+<body id="page2" style="background-image: url('/images/food1.jpg')">
+    
+    
+<ul>
+    <% for(var i=0; i<places.length; i++) { %>
+      <li><a href="/places/<%=places[i]._id%>"><%= places[i].district %></a></li>
+      <%}%>
+</ul>
+</body>
+</html>
