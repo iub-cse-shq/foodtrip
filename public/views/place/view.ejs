@@ -2,7 +2,9 @@
 <html>
 	<link rel="stylesheet" href="/css/place.css">
 <head>
-	<div id="div1"><%=request.place.district%></div>
+	<div id="div1"><%=request.place.district%>
+		<% if(user) { %><button id = "del">Delete</button> <% } %>
+	</div>
 </head>
 <body id="pa1" style="background-image: url('<%=request.place.image%>')">
 
@@ -29,6 +31,21 @@
 </div>
 	
 <div id="footer"></div>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script>
+$("#del").click(function(event){
+	$.ajax({
+              url:"/api/places/"+<%- JSON.stringify(request.place._id) %>,
+              method:"delete"
+            }).done(function(response){
+              console.log(response);
+              window.location.replace("/places/all");
+            }).fail(function(response){
+              console.log(response.responseText);
+              $("#error").text(JSON.parse(response.responseText).message);
+            });
+});
+</script>
 
 </body>
 </html>
