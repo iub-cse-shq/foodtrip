@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="/css/place.css">
+<head>
+</head>
+<body id="page2" style="background:green"></body>
+    
+    
+<ul>
+    <% for(var i=0; i<foods.length; i++) { %>
+      <li><a href="/foods/<%=foods[i]._id%>"><%=foods[i] %></a></li>
+      <%}%>
+</ul>
+</body>
+</html>
